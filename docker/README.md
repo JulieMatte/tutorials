@@ -69,6 +69,7 @@ docker tag staged/${CONDA_ENV} ${USER_DOCKER}/${CONDA_ENV}
 docker push ${USER_DOCKER}/${CONDA_ENV}
 
 # push Docker image to Google container registry
+# NOTE: this will fail if using `sudo docker`
 #docker tag staged/${CONDA_ENV} us.gcr.io/my-project-name/${CONDA_ENV}
 #docker push us.gcr.io/my-project-name/${CONDA_ENV}
 ```
@@ -78,13 +79,13 @@ Cleanup all Docker containers
 ----------------------------
 
 ```bash
-sudo docker system prune --all --force
+docker system prune --all --force
 
 # Must be run first because images are attached to containers
-sudo docker rm -f $(docker ps -a -q)
+docker rm -f $(docker ps -a -q)
 
 # Delete every Docker image
-sudo docker rmi -f $(docker images -q)
+docker rmi -f $(docker images -q)
 ```
 
 

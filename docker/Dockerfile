@@ -1,4 +1,4 @@
-FROM buildpack-deps:artful
+FROM buildpack-deps
 
 
 ############################ Setup: OS #########################################
