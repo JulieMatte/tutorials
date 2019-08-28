@@ -57,7 +57,7 @@ USER_DOCKER="my_dockerhub_user_name"
 source activate ${CONDA_ENV}
 
 # dump the conda environment
-conda env export | grep -v prefix | grep -v name > ${BUILD_DIR}/environment.yml
+conda env export --no-builds | grep -v prefix | grep -v name > ${BUILD_DIR}/environment.yml
 
 # build the Docker image
 # NOTE: the default Dockerfile assumes environment.yml is in the same dir where
