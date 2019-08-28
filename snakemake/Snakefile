@@ -1,0 +1,31 @@
+#!/usr/bin/env snakemake
+
+"""
+Snakemake demo pipeline
+-----------------------
+
+Snakemake demo pipeline.
+"""
+
+__version__ = '0.1.0'
+
+
+rule all:
+    input:
+        'demo_data-filtered_bash.tsv.gz'
+
+
+rule filter_data_bash:
+    """
+    Demo rule.
+    """
+    input:
+        f='demo_data.tsv.gz'
+    output:
+        f=temp('demo_data-filtered_bash.tsv.gz')
+    shell:
+        'zcat {input.f}'
+        ' | awk \'NR==1; NR>1{{ '
+            'if ($5 == "virginica") print $0 '
+        '}}\''
+        ' | gzip -c > {output.f}'
